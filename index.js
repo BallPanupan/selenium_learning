@@ -1,20 +1,39 @@
-const { Builder } = require("selenium-webdriver");
-const chrome = require('selenium-webdriver/chrome');
+const {Builder, By, Key, until} = require('selenium-webdriver');
+const fs = require('fs');
+let object = [];
 
-async function main() {
-    let options = new chrome.Options();
-    let driver = await new Builder()
-        .forBrowser('chrome')
-        .setChromeOptions(options)
-        .build();
+function saveLog(data) {
+    let milliseconds = new Date().getTime();
+    let today = new Date();
+    let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    let fileName = milliseconds + ".txt";
 
-        
-
-        await setTimeout(() => {
-            driver.quit();    
-        }, 3000);
-
-
+    fs.writeFile("log/"+fileName, data, function(err) {
+        if (err) {
+            console.log(err);
+        }
+    });
 }
 
-main();
+// process.exit(1)
+
+(async function example() {
+    let driver = await new Builder().forBrowser('chrome').build();
+    let data = {};
+
+    try {
+        await driver.get('http://www.google.com/');
+        await driver.getTitle();
+        await driver.findElement(By.name('q')).sendKeys('webdriver', Key.RETURN);
+        
+        data['Title-Page'] = await driver.getTitle();
+
+        object.push(data);
+
+    } finally {
+        saveLog(JSON.stringify(object, undefined, 4));
+        
+        await driver.quit();
+    }
+
+})();

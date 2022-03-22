@@ -47,3 +47,5 @@ Thumbs.db
 # Generate Files
 rawfiles/
 env.php
+
+/log
