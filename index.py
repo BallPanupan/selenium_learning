@@ -1,21 +1,22 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
+chrome_options = webdriver.ChromeOptions()
+# chrome_options.addArguments("--auto-open-devtools-for-tabs")
 
-driver = webdriver.Chrome()
 
-driver.get("https://www.google.com")
+driver = webdriver.Chrome(chrome_options=chrome_options)
 
-driver.title # => "Google"
+driver.get("https://www.asxlistedcompanies.com/")
+
+driver.title
 
 driver.implicitly_wait(0.5)
 
-search_box = driver.find_element(By.NAME, "q")
-search_button = driver.find_element(By.NAME, "btnK")
+# elements = driver.find_element(By.CLASS_NAME, "tableizer-table sortable")
+elements = driver.find_elements(By.CLASS_NAME, 'tableizer-table sortable')
 
-search_box.send_keys("Selenium")
-search_button.click()
+for e in elements:
+    print(e.text)
 
-driver.find_element(By.NAME, "q").get_attribute("value") # => "Selenium"
-
-driver.quit()
+# driver.quit()
