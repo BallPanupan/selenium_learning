@@ -1,0 +1,21 @@
+.section-calculator {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.form-calculator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-calculator button {
+    width: 100px;
+}
+
+.reuslt {
+    display: none;
+}
