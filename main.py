@@ -2,7 +2,9 @@ from time import sleep
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
-driver = webdriver.Chrome()
+from webdriver_manager.chrome import ChromeDriverManager
+driver = webdriver.Chrome(executable_path=r"C:/Users/AsusX/Desktop/my_learning/selenium_learning/chromedriver/chromedriver.exe")
+
 
 driver.get('file:///C:/Users/AsusX/Desktop/my_learning/selenium_learning/ex_web/form/index.html')
 driver.implicitly_wait(3)
@@ -30,6 +32,4 @@ input_b.send_keys(7)
 sleep(2)
 btn.click()
 
-
-
-# driver.quit()
+driver.quit()
