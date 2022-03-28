@@ -44,7 +44,7 @@ button:focus {
     content: attr(data-perc);
 }
 
-.completeds {
+.completeds-label {
     color: #00ff0a;
     font-size: 26px;
     DISPLAY: none;
